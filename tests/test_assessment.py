@@ -15,12 +15,16 @@ class TestPythonAssessment(unittest.TestCase):
         self.assertFalse(is_prime(1))
         self.assertTrue(is_prime(2))
         self.assertTrue(is_prime(17))
+        self.assertFalse(is_prime(-5))
+        self.assertFalse(is_prime(-1))
         self.assertFalse(is_prime(100))
         self.assertTrue(is_prime(997))
 
     def test_is_palindrome(self):
         self.assertTrue(is_palindrome("madam"))
         self.assertTrue(is_palindrome("Racecar"))
+        self.assertTrue(is_palindrome(" "))
+        self.assertTrue(is_palindrome("12321"))
         self.assertFalse(is_palindrome("hello"))
         self.assertTrue(is_palindrome("A man, a plan, a canal: Panama"))
 
@@ -65,6 +69,11 @@ class TestPythonAssessment(unittest.TestCase):
         d = [[10, 20, 30], [40, 50, 60]]
         expected2 = [[11, 22, 33], [44, 55, 66]]
         self.assertEqual(matrix_addition(c, d), expected2)
+
+        mismatched = [[1, 2, 3], [4, 5, 6]]
+        invalid_matrix = [[10, 20, 30]]
+        with self.assertRaises(ValueError):
+            matrix_addition(mismatched, invalid_matrix)
 
     def test_pascal_triangle(self):
         self.assertEqual(pascal_triangle(0), [])
